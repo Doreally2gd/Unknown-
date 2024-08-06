@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter PIN</title>
+    <style>
+        form .input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.input-field input {
+    height: 100%;
+    width: 100%;
+    background: none;
+    outline: none;
+    font-size: 0.95rem;
+    padding: 0 15px;
+    border: 1px solid #717171;
+    border-radius: 3px;
+}
+
+.input-field input:focus {
+    border: 1px solid #00bcd4;
+}
+
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #4a4646;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) {
+    padding: 16px 15px 0;
+}
+
+
+.input-field input:is(:focus, :valid)~label {
+    transform: translateY(-120%);
+    color: #00bcd4;
+    font-size: 0.75rem;
+}
+
+.form-box a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+}
+
+form :where(.forgot-pass-link, .policy-text) {
+    display: inline-flex;
+    margin-top: 13px;
+    font-size: 0.95rem;
+}
+
+form button {
+    width: 100%;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 25px 0;
+    background: #00bcd4;
+    transition: 0.2s ease;
+}
+
+form button:hover {
+    background: #0097a7;
+}
+
+.form-content .bottom-link {
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <form id="pinForm">
+        <div class="input-field">
+            <input type="password"  name="pin" id="pin" required>
+            <label>Password:</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        document.getElementById('pinForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var pin = document.getElementById('pin').value;
+            if (pin === '143 girly') { // Replace '1234' with your desired PIN
+                sessionStorage.setItem('accessGranted', 'true');
+                window.location.href = 'restricted.html';
+            } else {
+                alert('Invaild PIN. Please try and insert a vaild pin.');
+            }
+        });
+    </script>
+</body>
+</html>
